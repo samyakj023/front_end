@@ -59,6 +59,7 @@ angular.module('myApp').controller('myController', ['apiService', function(apiSe
         }
     
         vm.loading = true;
+        console.log('Fetching last week leaderboard data for country code:', countryCode); 
         apiService.getData('https://api-backend-cmqd.onrender.com/api/lastweek/' + countryCode)
             .then(function(response) {
                 if (response.status === 404) {
@@ -66,6 +67,7 @@ angular.module('myApp').controller('myController', ['apiService', function(apiSe
                 } else {
                     vm.lastWeekLeaderboardData = response.data;
                     vm.displayedData = vm.lastWeekLeaderboardData;
+                    console.log('Last week leaderboard data fetched successfully:', vm.lastWeekLeaderboardData);
                 }
                 vm.loading = false;
             })
@@ -75,6 +77,8 @@ angular.module('myApp').controller('myController', ['apiService', function(apiSe
                 vm.loading = false;
             });
     };
+    
+    
     
     
     
