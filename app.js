@@ -1,6 +1,6 @@
 angular.module('myApp', []);
 
-// Add the following code to your app.js file
+
 angular.module('myApp').factory('apiService', ['$http', function($http) {
     return {
         getData: function(apiUrl) {
@@ -59,21 +59,17 @@ angular.module('myApp').controller('myController', ['apiService', function(apiSe
         }
     
         vm.loading = true;
-        console.log('Fetching last week leaderboard data for country code:', countryCode); 
-        apiService.getData('https://api-backend-cmqd.onrender.com/api/lastweek/' + countryCode)
-            .then(function(response) {
-                if (response.status === 404) {
-                    alert('No data found for the given country code.');
-                } else {
-                    vm.lastWeekLeaderboardData = response.data;
-                    vm.displayedData = vm.lastWeekLeaderboardData;
-                    console.log('Last week leaderboard data fetched successfully:', vm.lastWeekLeaderboardData);
-                }
+        console.log('Fetching last week leaderboard data for country code:', countryCode);
+        apiService.getData('https://api-backend-cmqd.onrender.com/api/lastweek/' + encodeURIComponent(countryCode))
+            .then(function(data) {
+                vm.lastWeekLeaderboardData = data;
+                vm.displayedData = vm.lastWeekLeaderboardData;
+                console.log('Last week leaderboard data fetched successfully:', vm.lastWeekLeaderboardData);
                 vm.loading = false;
             })
             .catch(function(error) {
                 console.log('Error fetching last week leaderboard data:', error);
-                alert('INVALID code.');
+                alert('Error fetching data for the given country code.');
                 vm.loading = false;
             });
     };
