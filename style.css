@@ -1,0 +1,118 @@
+body {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+    max-width: 1200px; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button, input[type="text"] {
+    display: block; 
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+
+element.style {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+
+ng-scope {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .button, input[type="text"] {
+        font-size: 14px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+    }
+}
