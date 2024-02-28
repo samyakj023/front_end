@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS API Example</title>
+    <script src="https://code.angularjs.org/1.7.9/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your HTML markup goes here -->
+    <!-- Add the following code within the <body> tag of your HTML file -->
+        <div ng-controller="myController as ctrl">
+            <h1>Data from the API:</h1>
+            <button class="button" ng-click="ctrl.fetchCurrentWeekData()">Display Current Week Leaderboard</button>
+            <button class="button" ng-click="ctrl.fetchAllUsersData()">Display All Users ID (needed to get user rank )</button>
+            <button class="button" ng-click="ctrl.fetchLastWeekCountryCodesData()">Display Last Week Country Codes</button>
+            <div ng-if="ctrl.loading">
+                <p>Loading data...</p>
+            </div>
+            <div ng-if="ctrl.displayedData && ctrl.displayedData === ctrl.currentWeekData">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>UID</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Country</th>
+                            <th>TimeStamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ctrl.currentWeekData">
+                            <td>{{ item.UID }}</td>
+                            <td>{{ item.Name }}</td>
+                            <td>{{ item.Score }}</td>
+                            <td>{{ item.Country }}</td>
+                            <td>{{ item.TimeStamp }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-if="ctrl.displayedData && ctrl.displayedData === ctrl.allUsersData">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>UID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ctrl.allUsersData">
+                            <td>{{ item }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-if="ctrl.displayedData && ctrl.displayedData === ctrl.lastWeekCountryCodesData">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ctrl.lastWeekCountryCodesData">
+                            <td>{{ item }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <input type="text" ng-model="countryCode" placeholder="Enter country code">
+                <button class="button" ng-click="ctrl.fetchLastWeekLeaderboardData(countryCode)">Display Last Week Leaderboard</button>
+            </div>
+            <div ng-if="ctrl.displayedData && ctrl.displayedData === ctrl.lastWeekLeaderboardData">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>UID</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Country</th>
+                            <th>TimeStamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ctrl.lastWeekLeaderboardData">
+                            <td>{{ item.UID }}</td>
+                            <td>{{ item.Name }}</td>
+                            <td>{{ item.Score }}</td>
+                            <td>{{ item.Country }}</td>
+                            <td>{{ item.TimeStamp }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+        
+        <input type="text" ng-model="ctrl.userID" placeholder="Enter user ID">
+        <button class="button" ng-click="ctrl.fetchUserRank(ctrl.userID)">Display User Rank</button>
+        <!-- Display user rank -->
+        <div ng-if="ctrl.displayedData && ctrl.displayedData.rank !== undefined">
+            <p>User Rank: {{ ctrl.displayedData.rank }}</p>
+        </div>
+        
+        </div>
+
+</body>
